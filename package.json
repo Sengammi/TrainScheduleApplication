@@ -28,6 +28,7 @@
     "@nestjs/swagger": "^8.0.7",
     "@typegoose/typegoose": "^12.9.1",
     "@types/mongoose": "^5.11.97",
+    "class-validator": "^0.14.1",
     "mongoose": "^8.8.2",
     "nestjs-typegoose": "^7.1.38",
     "reflect-metadata": "^0.1.13",
