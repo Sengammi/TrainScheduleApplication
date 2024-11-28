@@ -7,7 +7,7 @@ export class UpdateUserDto {
   
   @ApiProperty()
   @IsEmail()
-  email: string;
+  email?: string;
 
   @ApiProperty({ required: false })
   password?: string;
