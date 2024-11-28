@@ -1,14 +1,66 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from "nestjs-typegoose";
 import { UserModel } from "../user/user.model";
 import { ModelType } from "@typegoose/typegoose/lib/types";
 import { JwtService } from "@nestjs/jwt";
 import { RefreshTokenDto } from "./dto/refreshToken.dto";
+import { SignInDto } from "./dto/sign-in.dto";
+import { compare, genSalt, hash } from 'bcryptjs';
+import { SignUpDto } from "./dto/sign-up.dto";
+
 
 @Injectable()
 export class AuthService {
 	constructor(@InjectModel(UserModel) private readonly UserModel: ModelType<UserModel>,
 					private readonly jwtService: JwtService) {}
+	
+	async signUp(dto: SignUpDto) {
+		const oldUser = await this.validationUser(dto);
+		
+		if (oldUser){
+			throw new BadRequestException("User already exists");
+		}
+		
+		const salt = await genSalt(10);
+		const newUser = new this.UserModel({
+			username: dto.username,
+			email: dto.email,
+			password: await hash(dto.password, salt),
+		})
+		
+		const tokens = await this.issueTokenPair(String(newUser._id))
+		
+		return {
+			user: this.returnUserFields(newUser),
+			...tokens
+		}
+	}
+	
+	async signIn(dto: SignInDto) {
+		const user = await this.validationUser(dto);
+		const tokens = await this.issueTokenPair(String(user._id));
+		
+		return {
+			user: this.returnUserFields(user),
+			...tokens
+		}
+	}
+	
+	async validationUser(dto: SignInDto): Promise<UserModel> {
+		const user = await this.UserModel.findOne({ email: dto.email });
+		
+		if (!user){
+			throw new UnauthorizedException("User not found")
+		}
+		
+		const isValidPassword = await compare(dto.password, user.password);
+		
+		if (!isValidPassword){
+			throw new UnauthorizedException('Invalid password')
+		}
+		
+		return user;
+	}
 	
 	async getNewTokens ({refreshToken}: RefreshTokenDto) {
 		if (!refreshToken) {

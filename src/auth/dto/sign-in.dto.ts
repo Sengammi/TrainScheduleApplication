@@ -1,9 +1,6 @@
 import { IsEmail, IsString, MinLength } from 'class-validator'
 
-export class SingUpDto {
-    @IsString()
-    username: string
-    
+export class SignInDto {
     @IsEmail()
     email: string
 
