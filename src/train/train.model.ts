@@ -6,7 +6,7 @@ export interface TrainModel extends Base {}
 
 export class TrainModel extends TimeStamps {
 	@prop()
-	number: number;
+	number: string;
 	
 	@prop()
 	name: string;
