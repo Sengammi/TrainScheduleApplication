@@ -61,7 +61,7 @@ export class UserService {
 	}
 	
 	async getCount() {
-		return this.UserModel.find().count().exec()
+		return this.UserModel.find().countDocuments().exec()
 	}
 	
 	

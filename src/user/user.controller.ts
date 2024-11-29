@@ -36,13 +36,14 @@ export class UserController {
 		return await this.userService.getAll(searchParam);
 	}
 	
+	@UsePipes(new IdValidationPipe())
 	@Get('/:id')
 	@Auth('admin')
 	async getUserById(@Param('id') id: string) {
 		return this.userService.byId(id);
 	}
 	
-	@Get('/:username')
+	@Get('by-username/:username')
 	@Auth('admin')
 	async getUserByUsername(@Param('username') username: string) {
 		return this.userService.byUsername(username);

@@ -15,7 +15,7 @@ export class AuthService {
 					private readonly jwtService: JwtService) {}
 	
 	async signUp(dto: SignUpDto) {
-		const oldUser = await this.validationUser(dto);
+		const oldUser = await this.UserModel.findOne(dto);
 		
 		if (oldUser){
 			throw new BadRequestException("User already exists");
@@ -27,6 +27,7 @@ export class AuthService {
 			email: dto.email,
 			password: await hash(dto.password, salt),
 		})
+		await newUser.save();
 		
 		const tokens = await this.issueTokenPair(String(newUser._id))
 		

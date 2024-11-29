@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from "nestjs-typegoose";
 import { TrainModel } from "./train.model";
 import { ModelType } from "@typegoose/typegoose/lib/types";
@@ -66,6 +66,12 @@ export class TrainService {
 	}
 	
 	async create(dto: CreateTrainDto){
+		const train = await this.TrainModel.find(dto).exec();
+		
+		if (train){
+			throw new BadRequestException('Train already exists');
+		}
+		
 		return await this.TrainModel.create(dto);
 	}
 	

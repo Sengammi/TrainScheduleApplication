@@ -10,7 +10,7 @@ import { RouteModel } from "./route.model";
        {
          typegooseClass: RouteModel,
          schemaOptions: {
-           collection: 'route'
+           collection: 'Route'
          }
        }
      ])

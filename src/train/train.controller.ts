@@ -40,6 +40,7 @@ export class TrainController {
 		return await this.trainService.byNumber(number);
 	}
 	
+	@UsePipes(new IdValidationPipe())
 	@Get(':id')
 	@Auth('admin')
 	@HttpCode(200)
@@ -62,6 +63,7 @@ export class TrainController {
 		return await this.trainService.update(id, dto);
 	}
 	
+	@UsePipes(new IdValidationPipe())
 	@Delete(':id')
 	@Auth('admin')
 	@HttpCode(200)

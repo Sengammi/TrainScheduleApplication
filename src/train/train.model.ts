@@ -5,7 +5,7 @@ import { prop } from "@typegoose/typegoose";
 export interface TrainModel extends Base {}
 
 export class TrainModel extends TimeStamps {
-	@prop()
+	@prop({unique: true})
 	number: string;
 	
 	@prop()
