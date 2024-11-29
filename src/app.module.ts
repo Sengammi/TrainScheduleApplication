@@ -7,6 +7,7 @@ import { TypegooseModule } from "nestjs-typegoose";
 import { getMongoDbConfig } from "./config/database.config";
 import { UserModule } from './user/user.module';
 import { TrainModule } from './train/train.module';
+import { RouteModule } from './route/route.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { TrainModule } from './train/train.module';
     AuthModule,
     UserModule,
     TrainModule,
+    RouteModule,
   ],
   controllers: [AppController],
   providers: [AppService],
