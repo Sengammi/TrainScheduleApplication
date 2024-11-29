@@ -1,8 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from "nestjs-typegoose";
 import { UserModel } from "./user.model";
 import { ModelType } from "@typegoose/typegoose/lib/types";
-import { NotFoundError } from "rxjs";
 import { genSalt, hash } from "bcryptjs";
 import { UpdateUserDto } from "./dto/update-user.dto";
 
@@ -14,7 +13,7 @@ export class UserService {
 		const user = await this.UserModel.findById(_id);
 		
 		if (!user) {
-			throw new NotFoundError('User not found')
+			throw new NotFoundException('User not found')
 		}
 		
 		return user;
@@ -24,7 +23,7 @@ export class UserService {
 		const user = await this.UserModel.findOne({ username: username });
 		
 		if (!user) {
-			throw new NotFoundError('User not found')
+			throw new NotFoundException('User not found')
 		}
 		
 		return user;
@@ -35,7 +34,7 @@ export class UserService {
 		const isSameUser = await this.UserModel.findOne({email: dto.email})
 		
 		if (isSameUser && isSameUser._id.toString()!== _id.toString()){
-			throw new NotFoundError("Email already is used")
+			throw new NotFoundException("Email already is used")
 		}
 		
 		user.username = dto.username
