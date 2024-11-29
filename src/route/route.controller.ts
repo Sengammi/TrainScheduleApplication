@@ -25,7 +25,7 @@ export class RouteController {
 	
 	@Get()
 	@HttpCode(200)
-	async getAll(@Query('from') from?: string, @Query('to') to?: string, @Query('departureDate') departureDate?: Date, @Query('sortParam') sortParam?: string){
+	async getAll(@Query('from') from?: string, @Query('to') to?: string, @Query('departureDate') departureDate?: string, @Query('sortParam') sortParam?: string){
 		return await this.routeService.getAll(from, to, departureDate, sortParam);
 	}
 	

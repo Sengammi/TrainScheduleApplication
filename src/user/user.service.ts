@@ -4,6 +4,7 @@ import { UserModel } from "./user.model";
 import { ModelType } from "@typegoose/typegoose/lib/types";
 import { genSalt, hash } from "bcryptjs";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { ChangePasswordDto } from "./dto/change-password.dto";
 
 @Injectable()
 export class UserService {
@@ -20,7 +21,7 @@ export class UserService {
 	}
 	
 	async byUsername(username: string) {
-		const user = await this.UserModel.findOne({ username: username });
+		const user = await this.UserModel.findOne({ username: new RegExp(username.replaceAll('_', ' '), 'i') });
 		
 		if (!user) {
 			throw new NotFoundException('User not found')
@@ -44,11 +45,16 @@ export class UserService {
 			user.isAdmin = dto.isAdmin;
 		}
 		
+		if (dto.password) {
+			const salt = await genSalt(10);
+			user.password = await hash(dto.password, salt)
+		}
+		
 		await user.save()
 		return user
 	}
 	
-	async changePassword(_id: string, dto: UpdateUserDto) {
+	async changePassword(_id: string, dto: ChangePasswordDto) {
 		const user = await this.byId(_id)
 		
 		if (dto.password) {
@@ -82,7 +88,7 @@ export class UserService {
 		}
 		
 		return await this.UserModel.find(options)
-							  .select('-password -updaterAt -__v')
+							  .select('-password -updatedAt -__v')
 							  .sort({username: -1})
 							  .exec()
 	}

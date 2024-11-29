@@ -29,7 +29,7 @@ export class TrainService {
 	}
 	
 	async byName(name: string) {
-		const train = await this.TrainModel.findOne({ name: new RegExp(name, 'i') }).exec();
+		const train = await this.TrainModel.findOne({ name: new RegExp(name.replaceAll('_', ' '), 'i') }).exec();
 		
 		if (!train){
 			throw new NotFoundException("Train not found");
@@ -60,13 +60,13 @@ export class TrainService {
 		}
 		
 		return await this.TrainModel.find(options)
-							  .select('-updateAt, -__v')
+							  .select('-createdAt -updatedAt -__v')
 							  .sort(sort)
 							  .exec();
 	}
 	
 	async create(dto: CreateTrainDto){
-		const train = await this.TrainModel.find(dto).exec();
+		const train = await this.TrainModel.findOne(dto);
 		
 		if (train){
 			throw new BadRequestException('Train already exists');

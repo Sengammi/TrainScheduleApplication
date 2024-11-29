@@ -18,23 +18,33 @@ export class RouteService {
 		return route;
 	}
 	
-	async getAll(from?: string, to?: string, departureDate?: Date, sortParam?: string) {
+	async getAll(from?: string, to?: string, departureDate?: string, sortParam?: string) {
 		let options = {};
 		let sort = '-departureDate';
 		
-		if (from || to || departureDate) {
+		let filters = [];
+		if (from) {
+			filters.push({ from: new RegExp(from, 'i') });
+		}
+		if (to) {
+			filters.push({ to: new RegExp(to, 'i') });
+		}
+		if (departureDate) {
+			const date = new Date(departureDate);
+			const nextDay = new Date(date);
+			nextDay.setDate(date.getDate() + 1);
+			
+			filters.push({
+				departureDate: {
+					$gte: date,
+					$lt: nextDay
+				}
+			});
+		}
+		
+		if (filters.length > 0) {
 			options = {
-				$or: [
-					{
-						from: new RegExp(from, 'i')
-					},
-					{
-						to: new RegExp(to, 'i')
-					},
-					{
-						departureDate: departureDate
-					}
-				]
+				$and: filters
 			}
 		}
 		
@@ -43,7 +53,7 @@ export class RouteService {
 		}
 		
 		return await this.RouteModel.find(options)
-							  .select('-updateAt, -__v')
+							  .select('-createdAt -updatedAt -__v')
 							  .sort(sort)
 							  .exec();
 	}

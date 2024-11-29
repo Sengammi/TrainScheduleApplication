@@ -5,6 +5,7 @@ import { Auth } from "../auth/decorators/auth.decorator";
 import { User } from "./decorators/user.decorator";
 import { IdValidationPipe } from "../pipes/id.validation.pipe";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { ChangePasswordDto } from "./dto/change-password.dto";
 
 @ApiTags('users')
 @Controller('users')
@@ -19,9 +20,18 @@ export class UserController {
 	
 	@UsePipes(new IdValidationPipe())
 	@Put('account')
+	@HttpCode(200)
 	@Auth()
 	async updateAccount(@User("_id") _id: string, @Body() dto: UpdateUserDto) {
 		return this.userService.updateProfile(_id, dto);
+	}
+	
+	@UsePipes(new IdValidationPipe())
+	@Put('change-password')
+	@HttpCode(200)
+	@Auth()
+	async changePassword(@User('_id') _id: string, @Body() dto: ChangePasswordDto) {
+		return this.userService.changePassword(_id, dto);
 	}
 	
 	@Get('count')
