@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #3AAFA9;
+  --secondary: #2B7A78;
+  --dark: #17252A;
+  --light: #DEF2F1
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+
+  div{
+    text-align: center;
+  }
+
+  @apply bg-white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Slide animation */
+.slide-animation-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.slide-animation-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.slide-animation-exit {
+  opacity: 1;
+}
+.slide-animation-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
