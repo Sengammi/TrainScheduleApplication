@@ -150,6 +150,10 @@ const config: Config = {
              textShadow: '1px 1px ' + 'rgba(0, 0, 0, 0.4)',
            },
            
+           '.text-lighting': {
+             textShadow: '1px 1px ' + 'rgba(55, 205, 205, 0.4)',
+           },
+           
            '.outline-border-none': {
              outline: 'none',
              border: 'none',

@@ -4,6 +4,8 @@ import { AuthItem } from "@/app/components/layout/Navigation/Menu/Auth/AuthItem"
 import { adminMenu } from "@/app/components/layout/Navigation/Menu/menu.data";
 import { MenuItem } from "@/app/components/layout/Navigation/Menu/MenuItem";
 
+import styles from '../Navigation.module.scss'
+
 export const Menu: FC = () => {
 	const { user } = useAuth();
 	const [ role, setRole ] = useState<'guest' | 'user' | 'admin'>('guest');
@@ -18,17 +20,21 @@ export const Menu: FC = () => {
 	}, [user]);
 	
 	return (
-		<ul>
-			<MenuItem item={{
-				title: 'Schedule',
-				link: '/'
-			}}/>
-			
-			{role === 'admin' && items.map((item, index) => (
-				<MenuItem item={item} key={index}/>
-			))}
-			
-			<AuthItem></AuthItem>
-		</ul>
+		<>
+			<ul>
+				<MenuItem item={{
+					title: 'Schedule',
+					link: '/'
+				}}/>
+				
+				{role === 'admin' && items.map((item, index) => (
+					<MenuItem item={item} key={index}/>
+				))}
+			</ul>
+
+			<ul className={styles.auth}>
+				<AuthItem/>
+			</ul>
+		</>
 	)
 }

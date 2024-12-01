@@ -1,0 +1,13 @@
+.item {
+	@apply font-medium text-2xl;
+
+	a {
+		@apply text-lighting text-light hover:text-secondary transition-colors hover:transition-colors;
+	}
+}
+
+.active {
+	a {
+		@apply text-secondary;
+	}
+}
