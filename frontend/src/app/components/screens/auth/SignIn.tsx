@@ -7,11 +7,13 @@ import { ISignInInput } from "@/app/components/screens/auth/auth.interface";
 import { Meta } from "@/app/meta/Meta";
 import styles from "@/app/components/screens/auth/Auth.module.scss";
 import { Heading } from "@/app/components/ui/heading/Heading";
+import { SignInFields } from "@/app/components/screens/auth/AuthFields";
+import { Button } from "@/app/components/ui/form-elements/Button";
 
 export const SignIn: FC = () => {
 	useAuthRedirect()
 	
-	const { isLoading, user } = useAuth()
+	const { isLoading } = useAuth()
 	const { signIn } = useActions()
 	
 	const {
@@ -24,7 +26,8 @@ export const SignIn: FC = () => {
 	})
 	
 	const handlerSignIn: SubmitHandler<ISignInInput> = async (data) => {
-		signIn(data)
+		signIn(data);
+		reset();
 	}
 	
 	return (
@@ -33,6 +36,13 @@ export const SignIn: FC = () => {
 				<form onSubmit={handleSubmit(handlerSignIn)}>
 					<Heading title={'Sign in'} className={'mb-6'} />
 				
+					<SignInFields
+						formState={formState}
+						register={registerInput}
+						isPasswordRequired
+					/>
+					
+					<Button type={'submit'} disabled={isLoading}>Authentication</Button>
 				
 				</form>
 			</section>

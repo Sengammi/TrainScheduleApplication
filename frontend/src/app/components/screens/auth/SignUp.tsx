@@ -8,11 +8,13 @@ import { Meta } from "@/app/meta/Meta";
 import { Heading } from "@/app/components/ui/heading/Heading";
 
 import styles from './Auth.module.scss'
+import { SignUpFields } from "@/app/components/screens/auth/AuthFields";
+import { Button } from "@/app/components/ui/form-elements/Button";
 
 export const SignUp: FC = () => {
 	useAuthRedirect()
 	
-	const { isLoading, user } = useAuth()
+	const { isLoading } = useAuth()
 	const { signUp } = useActions()
 	
 	const {
@@ -25,7 +27,8 @@ export const SignUp: FC = () => {
 	})
 	
 	const handlerSignUp: SubmitHandler<ISignUpInput> = async (data) => {
-		signUp(data)
+		signUp(data);
+		reset();
 	}
 	
 	return (
@@ -34,6 +37,13 @@ export const SignUp: FC = () => {
 				<form onSubmit={handleSubmit(handlerSignUp)}>
 					<Heading title={'Sign up'} className={'mb-6'} />
 					
+					<SignUpFields
+						formState={formState}
+						register={registerInput}
+						isPasswordRequired
+					/>
+					
+					<Button type={'submit'} disabled={isLoading}>Create account</Button>
 					
 				</form>
 			</section>
