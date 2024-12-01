@@ -20,6 +20,10 @@ export interface IEmailPassword {
    password: string;
 }
 
+export interface IEmailPasswordName extends IEmailPassword {
+   username: string;
+}
+
 export interface IAuthResponse extends ITokens {
 	user: IUser & {
       isAdmin: boolean;

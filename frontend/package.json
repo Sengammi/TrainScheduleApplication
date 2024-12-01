@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.4.0",
     "@types/js-cookie": "^3.0.6",
     "@types/react-redux-toastr": "^8.0.0",
     "axios": "^1.7.8",
