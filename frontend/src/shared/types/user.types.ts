@@ -6,3 +6,7 @@ export interface IUser {
 	createdAt: string;
 	isAdmin: boolean;
 }
+
+export interface IPassword {
+	password: string;
+}
