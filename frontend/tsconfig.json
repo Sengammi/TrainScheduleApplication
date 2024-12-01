@@ -25,7 +25,7 @@
       "@/pages/*": ["./src/pages/*"],
       "@/shared/*": ["./src/shared/*"],
       "@/store/*": ["./src/store/*"],
-      "@/store/*": ["./src/store/*"],
+      "@/config/*": ["./src/config/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
