@@ -144,6 +144,9 @@ const config: Config = {
              color: theme('colors.white'),
              boxShadow: theme('boxShadow.layout'),
            },
+           '.air-mondegreen': {
+             boxShadow: '4px 4px rgba(0, 98, 90, 0.4), 8px 8px rgba(0, 98, 90, 0.3), 12px 12px rgba(0, 98, 90, 0.2), 16px 16px rgba(0, 98, 90, 0.1), 20px 20px rgba(0, 98, 90, 0.05)'
+           },
          })
          addUtilities({
            '.text-shadow': {
