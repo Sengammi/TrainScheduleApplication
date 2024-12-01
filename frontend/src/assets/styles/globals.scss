@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import 'react-redux-toastr/src/styles/index';
+@import './react-select.scss';
 
 :root {
   --primary-color: #3AAFA9;

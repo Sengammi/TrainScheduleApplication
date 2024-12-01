@@ -4,6 +4,8 @@ import { MenuItem } from "@/app/components/layout/Navigation/Menu/MenuItem";
 import Link from "next/link";
 import { useActions } from "@/hooks/useActions";
 
+import styles from '../MenuItem.module.scss'
+
 export const AuthItem: FC = () => {
 	const { user } = useAuth()
 	const { signOut } = useActions()
@@ -32,7 +34,7 @@ export const AuthItem: FC = () => {
 					 }}/>
 						
 					 <li>
-						 <Link onClick={handleSignOut} href={'#'}>
+						 <Link onClick={handleSignOut} href={'#'} className={styles.signOut}>
 							<span>Sign Out</span>
 						 </Link>
 					 </li>
