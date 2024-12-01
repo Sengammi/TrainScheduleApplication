@@ -3,6 +3,8 @@ import { HeadProvider } from "@/app/providers/HeadProvider";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Layout } from "@/app/components/layout/Layout";
 import { ReduxToast } from "@/app/providers/ReduxToast";
+import { Provider } from "react-redux";
+import { store } from "@/store/store";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -15,12 +17,14 @@ const queryClient = new QueryClient({
 export const MaineProvider: FC<PropsWithChildren> = ({children}) => {
 	return (
 		<HeadProvider>
-			<QueryClientProvider client={queryClient}>
-				<ReduxToast/>
-				<Layout>
-					{children}
-				</Layout>
-			</QueryClientProvider>
+			<Provider store={store}>
+				<QueryClientProvider client={queryClient}>
+					<ReduxToast/>
+					<Layout>
+						{children}
+					</Layout>
+				</QueryClientProvider>
+			</Provider>
 		</HeadProvider>
 	)
 }
