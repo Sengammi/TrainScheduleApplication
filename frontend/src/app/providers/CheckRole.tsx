@@ -26,7 +26,7 @@ export const CheckRole: FC<PropsWithChildren<TypeComponentAuthFields>> = ({child
 	if (isUser && isOnlyUser){
 		return <Children/>
 	} else {
-		router.pathname !== '/sing-in' && router.replace('/sing-in')
+		router.pathname !== '/sign-in' && router.replace('/sign-in')
 		return null;
 	}
 }

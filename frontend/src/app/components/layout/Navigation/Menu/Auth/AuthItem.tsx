@@ -6,12 +6,12 @@ import { useActions } from "@/hooks/useActions";
 
 export const AuthItem: FC = () => {
 	const { user } = useAuth()
-	const { singOut } = useActions()
+	const { signOut } = useActions()
 	const [ role, setRole ] = useState<'guest' | 'user' | 'admin'>('guest');
 	
 	const handleSignOut = (e: MouseEvent<HTMLAnchorElement>) => {
 		e.preventDefault();
-		singOut();
+		signOut();
 	}
 	
 	useEffect(() => {

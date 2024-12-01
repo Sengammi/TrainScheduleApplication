@@ -65,7 +65,7 @@ export class AuthService {
 	
 	async getNewTokens ({refreshToken}: RefreshTokenDto) {
 		if (!refreshToken) {
-			throw new UnauthorizedException('Please sing in!')
+			throw new UnauthorizedException('Please sign in!')
 		}
 		
 		const result = await this.jwtService.verifyAsync(refreshToken)

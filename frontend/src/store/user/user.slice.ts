@@ -1,7 +1,7 @@
 import { IInitialState } from "@/store/user/user.interface";
 import { getStoreLocal } from "@/utils/local-storage";
 import { createSlice } from "@reduxjs/toolkit";
-import { checkAuth, signIn, signUp, singOut } from '@/store/user/user.actions';
+import { checkAuth, signIn, signUp, signOut } from '@/store/user/user.actions';
 
 const initialState: IInitialState = {
 	isLoading: false,
@@ -36,7 +36,7 @@ export const userSlice = createSlice({
 				state.isLoading = true;
 				state.user = null;
 			})
-			.addCase(singOut.fulfilled, (state) => {
+			.addCase(signOut.fulfilled, (state) => {
 				state.isLoading = false;
 				state.user = null;
 			})

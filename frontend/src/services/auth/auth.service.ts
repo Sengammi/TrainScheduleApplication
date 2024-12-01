@@ -9,7 +9,7 @@ import { getContentType } from "@/api/api.helpers";
 export const AuthService = {
 	async signUp(username: string, email: string, password: string) {
 		const response = await axiosClassic.post<IAuthResponse>(
-			getAuthUrl('sing-up'),
+			getAuthUrl('sign-up'),
 			{username, email, password}
 		)
 		
@@ -22,7 +22,7 @@ export const AuthService = {
 	
 	async signIn(email: string, password: string) {
 		const response = await axiosClassic.post<IAuthResponse>(
-			getAuthUrl('sing-in'),
+			getAuthUrl('sign-in'),
 			{email, password}
 		)
 		
@@ -33,7 +33,7 @@ export const AuthService = {
 		return response;
 	},
 	
-	async singOut() {
+	async signOut() {
 		removeTokenStorage();
 		localStorage.removeItem('user');
 	},
