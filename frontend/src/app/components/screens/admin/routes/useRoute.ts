@@ -8,10 +8,19 @@ import { toastr } from "react-redux-toastr";
 import { useRouter } from "next/router";
 import { RouteService } from "@/services/route.service";
 
+
+const formatDateForInput = (date: Date) => {
+	if (!date) return '';
+	const isoString = date.toISOString();
+	return isoString.split('T')[0];
+}
+
 export const useRoute = () => {
+	const today = formatDateForInput( new Date());
+
 	const [from, setFrom] = useState('')
 	const [to, setTo] = useState('');
-	const [departureDate, setDepartureDate] = useState('')
+	const [departureDate, setDepartureDate] = useState(today)
 	const [sortParam, setSortParam] = useState('')
 	const {push} = useRouter()
 	
@@ -19,9 +28,7 @@ export const useRoute = () => {
 	useDebounceCallback((value) => setTo(value), 500);
 	
 	const queryData = useQuery(
-		['user list', from, to, departureDate, sortParam],
-		() => RouteService.getAll(from, to, departureDate, sortParam),
-		{
+		['route list', from, to, departureDate, sortParam], () => RouteService.getAll(from, to, departureDate, sortParam), {
 			select: ({ data }) => data.map((route):ITableItem => ({
 				_id: route._id,
 				editUrl: getAdminUrl(`route/${route._id}`),
@@ -69,7 +76,7 @@ export const useRoute = () => {
 	)
 
 	return useMemo(() => ({
-		handleFrom, handleTo, handleDate, handleSort, ...queryData, from, to, departureDate, sortParam, deleteAsync, createAsync
+		handleFrom, handleTo, handleDate, handleSort, ...queryData, from, to, departureDate, sortParam, deleteAsync, today, createAsync
 	}), [queryData, from, to, departureDate, sortParam, deleteAsync, createAsync]);
 
 }

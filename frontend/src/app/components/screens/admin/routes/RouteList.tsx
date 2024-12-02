@@ -8,8 +8,10 @@ import { SearchField } from "@/ui/search-field/SearchField";
 import { AdminCreateButton } from "@/ui/admin-table/AdminHeader/AdminCreateButton";
 import { Field } from "@/ui/form-elements/Field";
 
+
+
 export const RouteList: FC<PropsWithChildren> = ({ children }) => {
-	const { handleFrom, handleTo, handleDate, isLoading, from, to, departureDate, sortParam, data, deleteAsync, createAsync } = useRoute()
+	const { handleFrom, handleTo, handleDate, isLoading, from, to, data, today, deleteAsync, createAsync } = useRoute()
 
 	return (
 		<Meta title={'Route'}>
@@ -26,7 +28,7 @@ export const RouteList: FC<PropsWithChildren> = ({ children }) => {
 				</div>
 				<div>
 					<label>Date</label>
-					<Field onChange={handleDate} placeholder={''} type={"date"} onClick={()=>{}}  />
+					<Field defaultValue={today} onChange={handleDate} placeholder={''} type={"date"} onClick={()=>{}}  />
 				</div>
 				<AdminCreateButton onClick={createAsync}/>
 			</div>
