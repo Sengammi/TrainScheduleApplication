@@ -1,4 +1,4 @@
-export const ConvertRole = (isAdmin: string) => {
+export const ConvertRole = (isAdmin: string | boolean) => {
 	return isAdmin
 		? 'Admin'
 		: 'User';

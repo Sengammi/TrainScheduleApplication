@@ -1,0 +1,14 @@
+.header {
+	@apply flex items-center mt-8 rounded-3xl justify-evenly;
+
+	> button {
+		@apply bg-primary bg-opacity-80 my-0 box-border py-0 h-2/3;
+	}
+
+	>div{
+		@apply w-2/3 justify-center items-center;
+		input{
+			@apply w-full text-dark outline-none focus:outline-none;
+		}
+	}
+}

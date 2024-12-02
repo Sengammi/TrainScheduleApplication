@@ -1,0 +1,30 @@
+
+.table{
+	@apply mx-auto;
+	width: 95%;
+}
+
+.item {
+	@apply flex items-center justify-between bg-light bg-opacity-20 mt-4 px-5 rounded-lg transition-colors hover:bg-opacity-50;
+
+	> div {
+		@apply text-dark text-opacity-80 py-3;
+		width: 20%;
+
+		&:last-child {
+			@apply text-right justify-end mr-10;
+		}
+	}
+}
+
+.itemHeader {
+	@apply bg-primary bg-opacity-20 shadow-lg mt-8 hover:bg-opacity-20;
+
+	> div {
+		@apply font-semibold text-opacity-90 py-2.5;
+	}
+}
+
+.notFound {
+	@apply text-lg text-white text-center py-3 text-opacity-60;
+}
