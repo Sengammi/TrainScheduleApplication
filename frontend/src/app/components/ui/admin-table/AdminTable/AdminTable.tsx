@@ -20,7 +20,7 @@ export const AdminTable:FC<IAdminTable> = ({tableItems, isLoading, headerItems, 
     	<AdminTableHeader actions={actions} headerItems={headerItems}/>
 
 		 {isLoading
-			 ? <SkeletonLoader count={2} height={48} className={'mt-4'}></SkeletonLoader>
+			 ? <SkeletonLoader count={5} height={48} className={'mt-4'}></SkeletonLoader>
 			 : tableItems.length
 				 ? tableItems.map(tableItem => <AdminTableItem actions={actions} key={tableItem._id} tableItem={tableItem} removeHandler={() => removeHandler && removeHandler(tableItem._id)}/>)
 				 : <div className={styles.notFound}>Elements not found</div>

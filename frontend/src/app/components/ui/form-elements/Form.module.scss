@@ -5,11 +5,16 @@
 		@apply flex items-end gap-2 w-full;
 
 		span{
-			@apply mr-auto min-w-20 block w-1/3 text-dark mb-1.5;
+			@apply  max-w-32 block w-1/3 text-dark mb-1.5;
 		}
 
-		input{
-			@apply ml-auto w-full rounded-md h-9;
+		input {
+			@apply ml-auto w-full rounded-md h-9 box-border;
+		}
+
+		input[type="checkbox"] {
+			@apply w-2/12 mx-auto box-content min-w-12 px-5;
+
 		}
 	}
 

@@ -1,13 +1,10 @@
 import { ChangeEvent, useMemo, useState } from "react";
 import { useDebounceCallback } from "usehooks-ts";
 import { useMutation, useQuery } from "react-query";
-import { UserService } from "@/services/user.service";
 import { ITableItem } from "@/app/components/ui/admin-table/AdminTable/admin-table.interface";
 import { getAdminUrl } from "@/config/url.config";
-import { convertMongoDate } from "@/utils/convert-mongo-date";
 import { toastError } from "@/utils/toast-error";
 import { toastr } from "react-redux-toastr";
-import { ConvertRole } from "@/utils/convert-role";
 import { useRouter } from "next/router";
 import { TrainService } from "@/services/train.service";
 
@@ -41,15 +38,12 @@ export const useTrains = () => {
 		push(getAdminUrl(`/train/create/`))
 	}
 
-	const { mutateAsync: deleteAsync } = useMutation(
-		'delete user',
-		(userId: string) => UserService.deleteById(userId),
-		{
+	const { mutateAsync: deleteAsync } = useMutation('delete train', (trainId: string) => TrainService.delete(trainId), {
 			onError: (error: any) => {
-				toastError(error, 'Delete user failed')
+				toastError(error, 'Delete train failed')
 			},
 			onSuccess: () => {
-            toastr.success('Delete user', 'delete was successful')
+            toastr.success('Delete train', 'delete was successful')
 				queryData.refetch().then(r => r)
          }
 		}

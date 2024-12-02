@@ -2,6 +2,7 @@ import { axiosClassic } from "@/api/interceptors";
 import { ITrain } from "@/shared/types/schedule.types";
 import { getTrainsUrl } from "@/config/api.config";
 import axios from "../api/interceptors";
+import { ITrainEditInput } from "@/components/screens/admin/train/train-edit.interface";
 
 
 export const TrainService = {
@@ -26,11 +27,11 @@ export const TrainService = {
 		return await axios.get<ITrain>(getTrainsUrl(`${_id}`))
 	},
 	
-	async create(data: ITrain) {
-		return await axios.put<ITrain>(getTrainsUrl(''), data)
+	async create(data: ITrainEditInput) {
+		return await axios.post<ITrain>(getTrainsUrl(''), data)
 	},
 	
-	async update(_id: string, data: ITrain) {
+	async update(_id: string, data: ITrainEditInput) {
 		return await axios.patch<ITrain>(getTrainsUrl(`${_id}`), data)
 	},
 	
