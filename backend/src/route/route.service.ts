@@ -20,7 +20,7 @@ export class RouteService {
 	
 	async getAll(from?: string, to?: string, departureDate?: string, sortParam?: string) {
 		let options = {};
-		let sort = '-departureDate';
+		let sort = 'departureDate';
 		
 		let filters = [];
 		if (from) {
