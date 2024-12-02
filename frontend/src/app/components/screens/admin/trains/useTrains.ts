@@ -24,7 +24,7 @@ export const useTrains = () => {
 		{
 			select: ({ data }) => data.map((train):ITableItem => ({
 				_id: train._id,
-				editUrl: getAdminUrl(`train/edit/${train._id}`),
+				editUrl: getAdminUrl(`train/${train._id}`),
 				items: [train.number, train.name]
 			})),
 			onError: (error: any) => {

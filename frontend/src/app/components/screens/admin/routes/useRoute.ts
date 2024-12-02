@@ -25,7 +25,7 @@ export const useRoute = () => {
 		{
 			select: ({ data }) => data.map((route):ITableItem => ({
 				_id: route._id,
-				editUrl: getAdminUrl(`route/edit/${route._id}`),
+				editUrl: getAdminUrl(`route/${route._id}`),
 				items: [route.train?.number || 'N/A',
 						  route.from,
 						  route.to,

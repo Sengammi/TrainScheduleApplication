@@ -1,11 +1,11 @@
-import { NextPage } from 'next'
 import { UserList } from "@/components/screens/admin/users/UserList";
+import { NextPageAuth } from "@/shared/types/auth.types";
 
-const UsersPage: NextPage = () => {
+const UsersPage: NextPageAuth = () => {
 	return (
-		<UserList>
-		</UserList>
-	)
+		<UserList/>)
 }
+
+UsersPage.isOnlyAdmin;
 
 export default UsersPage;

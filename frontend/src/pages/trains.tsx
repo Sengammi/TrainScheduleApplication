@@ -1,10 +1,12 @@
-import { NextPage } from 'next'
 import { TrainList } from "@/components/screens/admin/trains/TrainList";
+import { NextPageAuth } from "@/shared/types/auth.types";
 
-const TrainsPage: NextPage = () => {
+const TrainsPage: NextPageAuth = () => {
 	return (
 		<TrainList />
 	)
 }
+
+TrainsPage.isOnlyAdmin;
 
 export default TrainsPage;

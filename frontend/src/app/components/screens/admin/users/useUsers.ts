@@ -22,7 +22,7 @@ export const useUsers = () => {
 		{
 			select: ({ data }) => data.map((user):ITableItem => ({
 				_id: user._id,
-				editUrl: getAdminUrl(`user/edit/${user._id}`),
+				editUrl: getAdminUrl(`user/${user._id}`),
 				items: [user.email, user.username, convertMongoDate(user.createdAt), ConvertRole(user.isAdmin)]
 			})),
 			onError: (error: any) => {
@@ -45,7 +45,7 @@ export const useUsers = () => {
 	// 		},
 	// 		onSuccess: ({ data: _id }) => {
 	// 			toastr.success('Create user', 'create was successful')
-	// 			push(getAdminUrl(`/user/edit/${_id}`))
+	// 			push(getAdminUrl(`/user/${_id}`))
 	// 		},
 	// 	}
 	// )
