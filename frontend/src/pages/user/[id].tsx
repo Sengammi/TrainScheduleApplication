@@ -7,6 +7,6 @@ const UserPage: NextPageAuth = () => {
 	)
 }
 
-UserPage.isOnlyAdmin;
+UserPage.isOnlyAdmin = true;
 
 export default UserPage;

@@ -7,6 +7,6 @@ const CreateTrainPage: NextPageAuth = () => {
 	)
 }
 
-CreateTrainPage.isOnlyAdmin;
+CreateTrainPage.isOnlyAdmin = true;
 
 export default CreateTrainPage;

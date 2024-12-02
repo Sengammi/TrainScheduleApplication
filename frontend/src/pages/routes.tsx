@@ -7,6 +7,6 @@ const RoutesPage: NextPageAuth = () => {
 	)
 }
 
-RoutesPage.isOnlyAdmin;
+RoutesPage.isOnlyAdmin = true;
 
 export default RoutesPage;
