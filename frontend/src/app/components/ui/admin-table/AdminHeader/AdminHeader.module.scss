@@ -31,3 +31,33 @@
 		margin-top: 20px;
 	}
 }
+
+.homePage{
+	>div{
+		@apply w-1/5;
+	}
+	>:last-child{
+		@apply w-2/12;
+	}
+}
+
+.sorts{
+	@apply w-1/5;
+
+	>div>div{
+		@apply pb-0 my-0 pt-0;
+
+		>label {
+			@apply flex items-center justify-center;
+
+			span{
+				margin-right: 10px;
+				text-align: start;
+			}
+		}
+	}
+
+	input[type="radio"] {
+		@apply w-1/4 m-0 py-0 h-4 checked:bg-dark;
+	}
+}
