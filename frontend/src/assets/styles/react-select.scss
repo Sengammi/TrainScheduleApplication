@@ -1,72 +1,32 @@
 .custom-select {
-	&__control {
-		background-color: transparent !important;
-		border: none !important;
-		border-radius: 0 !important;
-		border-bottom: 1px solid #66676e !important;
-		box-shadow: none !important;
-
-		&__menu-is-open {
-			border-color: var(--primary-color) !important;
-		}
-	}
-
-	&__value-container {
-		padding: 0 !important;
-		cursor: text !important;
-	}
-
-	&__input-container {
-		color: #999aa5 !important;
-	}
-
-	&__indicator-separator {
-		display: none !important;
-	}
-
-	&__indicators {
-		cursor: pointer !important;
-	}
 
 	&__indicator {
-		color: #66676e !important;
+		color: var(--secondary) !important;
 
 		&:hover {
-			color: #999aa5 !important;
-		}
-	}
-
-	&__multi-value {
-		background-color: rgba(#999aa5, 0.6) !important;
-		border-radius: 0.5rem !important;
-	}
-
-	&__multi-value__label {
-		font-size: 80% !important;
-		color: rgba(white, 0.7) !important;
-	}
-
-	&__multi-value__remove {
-		color: rgba(white, 0.8) !important;
-
-		&:hover {
-			color: rgba(white, 1) !important;
-			background-color: transparent !important;
+			color: #7cbfbe !important;
 		}
 	}
 
 	&__menu {
 		@apply animate-fade;
 		animation-duration: 0.25s !important;
-		background-color: #292a2e !important;
-		color: rgba(white, 0.6) !important;
+		background-color: var(--light) !important;
+		color: rgba(var(--dark), 0.6) !important;
 	}
 
 	&__option {
 		cursor: pointer !important;
-		&--is-focused {
-			background-color: lighten(#292a2e, 8%) !important;
+
+		&--is-selected {
+			background-color: var(--secondary) !important;
 		}
+
+		&--is-focused {
+			background-color: var(--primary-color) !important;
+			color: white !important;
+		}
+
 	}
 
 	&-container {
@@ -89,9 +49,4 @@
 			@apply cursor-pointer;
 		}
 	}
-
-}
-
-.admin-form {
-	@apply w-1/2 mt-12;
 }
