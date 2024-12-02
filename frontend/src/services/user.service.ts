@@ -1,20 +1,20 @@
-import { axiosClassic } from "@/api/interceptors";
 import { IPassword, IUser } from "@/shared/types/user.types";
 import { getUsersUrl } from "@/config/api.config";
 import axios from "../api/interceptors";
+import { IAccountInput } from "@/app/components/screens/account/useAccount";
 
 
 export const UserService = {
 	async getAccount() {
-		return await axiosClassic.get<IUser>(getUsersUrl('account'))
+		return await axios.get<IUser>(getUsersUrl('account'))
 	},
 	
-	async updateAccount(data: IUser) {
-		return await axiosClassic.put<IUser>(getUsersUrl('account'), data)
+	async updateAccount(data: IAccountInput) {
+		return await axios.put<IUser>(getUsersUrl('account'), data)
 	},
 	
 	async changePassword(data: IPassword) {
-		return await axiosClassic.put<IUser>(getUsersUrl('change-password'), data)
+		return await axios.put<IUser>(getUsersUrl('change-password'), data)
 	},
 	
 	async count(){
