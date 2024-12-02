@@ -12,7 +12,7 @@ export const useTrains = () => {
 	const [searchTerm, setSearchTerm] = useState('')
 	const {push} = useRouter()
 	
-	const debouncedTerm = useDebounceCallback((value) => setSearchTerm(value), 500);
+	useDebounceCallback((value) => setSearchTerm(value), 500);
 	
 	
 	const queryData = useQuery(

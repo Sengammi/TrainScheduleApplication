@@ -9,7 +9,7 @@ import { Field } from "@/ui/form-elements/Field";
 import cn from "classnames";
 
 export const Home: FC = () => {
-	const { handleFrom, handleTo, handleDate, handleSort, isLoading, from, to, data} = useRoute()
+	const { handleFrom, handleTo, handleDate, handleSort, isLoading, from, to, data, today} = useRoute()
 	
 	return (
 		<Meta title={'Train Schedule'}
@@ -27,7 +27,7 @@ export const Home: FC = () => {
 				</div>
 				<div>
 					<label>Date</label>
-					<Field onChange={handleDate} placeholder={''} type={"date"} onClick={() => {}}/>
+					<Field defaultValue={today} onChange={handleDate} placeholder={''} type={"date"} onClick={() => {}}/>
 				</div>
 				<div className={styles.sorts}>
 					<label>Sort</label>

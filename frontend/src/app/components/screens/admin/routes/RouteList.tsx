@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react'
+import { FC } from 'react'
 import { Meta } from '@/app/meta/Meta'
 import { Heading } from '@/app/components/ui/heading/Heading'
 import { AdminTable } from '@/app/components/ui/admin-table/AdminTable/AdminTable'
@@ -10,7 +10,7 @@ import { Field } from "@/ui/form-elements/Field";
 
 
 
-export const RouteList: FC<PropsWithChildren> = ({ children }) => {
+export const RouteList: FC = () => {
 	const { handleFrom, handleTo, handleDate, isLoading, from, to, data, today, deleteAsync, createAsync } = useRoute()
 
 	return (

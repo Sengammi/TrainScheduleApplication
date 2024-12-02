@@ -15,7 +15,7 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 	
 	const { isLoading } = useQuery(['user', userId], () => UserService.getById(userId), {
 		onSuccess: ({ data }) => {
-			getKeys(data).forEach(key => {
+			getKeys(data).forEach(() => {
 				setValue('username', data.username)
 				setValue('email', data.email)
 				setValue('password', data.password)

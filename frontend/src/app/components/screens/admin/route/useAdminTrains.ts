@@ -5,7 +5,7 @@ import { toastError } from "@/utils/toast-error";
 
 
 export const useAdminTrains = () => {
-	const queryData = useQuery('list of trains', () => TrainService.getAll(), {
+	return useQuery('list of trains', () => TrainService.getAll(), {
 		select: ({data}) => data.map((train): IOption => ({
 			label: train.number,
 			value: train._id
@@ -15,6 +15,4 @@ export const useAdminTrains = () => {
 			toastError(error, 'Train list');
 		}
 	})
-	
-	return queryData;
 }

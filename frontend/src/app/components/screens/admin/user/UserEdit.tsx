@@ -18,8 +18,6 @@ export const UserEdit: FC = () => {
 		register,
 		formState,
 		setValue,
-		getValues,
-		control
 	} = useForm<IUserEditInput>({mode: 'onChange'})
 	
 	const { isLoading, onSubmit } = useUserEdit(setValue)

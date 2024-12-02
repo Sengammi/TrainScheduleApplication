@@ -8,13 +8,11 @@ import { convertMongoDate } from "@/utils/convert-mongo-date";
 import { toastError } from "@/utils/toast-error";
 import { toastr } from "react-redux-toastr";
 import { ConvertRole } from "@/utils/convert-role";
-import { useRouter } from "next/router";
 
 export const useUsers = () => {
 	const [searchTerm, setSearchTerm] = useState('')
 	
-	const debouncedTerm = useDebounceCallback((value) => setSearchTerm(value), 500);
-	
+	useDebounceCallback((value) => setSearchTerm(value), 500);
 	
 	const queryData = useQuery(
 		['user list', searchTerm],
@@ -28,27 +26,12 @@ export const useUsers = () => {
 			onError: (error: any) => {
 				toastError(error, 'User list')
 			},
-			// enabled: !!searchTerm,
 		},
 	)
 
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
-
-	// const { mutateAsync: createAsync } = useMutation(
-	// 	'create user',
-	// 	() => UserService.create(),
-	// 	{
-	// 		onError: (error: any) => {
-	// 			toastError(error, 'Create user failed')
-	// 		},
-	// 		onSuccess: ({ data: _id }) => {
-	// 			toastr.success('Create user', 'create was successful')
-	// 			push(getAdminUrl(`/user/${_id}`))
-	// 		},
-	// 	}
-	// )
 
 	const { mutateAsync: deleteAsync } = useMutation(
 		'delete user',

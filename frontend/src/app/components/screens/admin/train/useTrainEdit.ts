@@ -15,7 +15,7 @@ export const useTrainEdit = (setValue: UseFormSetValue<ITrainEditInput>) => {
 	
 	const { isLoading } = useQuery(['train', trainId], () => TrainService.getById(trainId), {
 		onSuccess: ({ data }) => {
-			getKeys(data).forEach(key => {
+			getKeys(data).forEach(() => {
 				setValue('number', data.number)
 				setValue('name', data.name)
 
