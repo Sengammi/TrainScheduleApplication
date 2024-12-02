@@ -32,7 +32,8 @@ export class RouteService {
 		if (departureDate) {
 			const date = new Date(departureDate);
 			const nextDay = new Date(date);
-			nextDay.setDate(date.getDate() + 1);
+			nextDay.setDate(nextDay.getDate() + 1)
+			
 			
 			filters.push({
 				departureDate: {
@@ -53,6 +54,7 @@ export class RouteService {
 		}
 		
 		return await this.RouteModel.find(options)
+							  .populate('train')
 							  .select('-createdAt -updatedAt -__v')
 							  .sort(sort)
 							  .exec();

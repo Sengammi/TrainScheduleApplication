@@ -1,1 +1,1 @@
-export const convertMongoDate = (data: string) => new Date(data).toLocaleDateString()
+export const convertMongoDate = (data: string | Date) => new Date(data).toLocaleDateString()

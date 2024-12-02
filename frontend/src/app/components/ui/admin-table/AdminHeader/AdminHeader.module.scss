@@ -1,4 +1,4 @@
-.header {
+.header, .routeHeader {
 	@apply flex items-center mt-8 rounded-3xl justify-evenly;
 
 	> button {
@@ -6,9 +6,28 @@
 	}
 
 	>div{
-		@apply w-2/3 justify-center items-center;
+		@apply justify-center items-center;
 		input{
 			@apply w-full text-dark outline-none focus:outline-none;
 		}
+	}
+}
+
+.header {
+	>div{
+		@apply w-2/3;
+	}
+}
+
+.routeHeader {
+	>div{
+		@apply w-1/4;
+	}
+
+	input[type="date"]{
+		@apply rounded-3xl border border-gray-700 px-10 flex items-center transition-colors h-full m-0 py-4;
+	}
+	button {
+		margin-top: 20px;
 	}
 }
