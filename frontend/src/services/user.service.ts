@@ -2,6 +2,7 @@ import { IPassword, IUser } from "@/shared/types/user.types";
 import { getUsersUrl } from "@/config/api.config";
 import axios from "../api/interceptors";
 import { IAccountInput } from "@/app/components/screens/account/useAccount";
+import { IUserEditInput } from "@/components/screens/admin/user/user-edit.interface";
 
 
 export const UserService = {
@@ -33,7 +34,7 @@ export const UserService = {
 		return await axios.get<IUser>(getUsersUrl(`${_id}`))
 	},
 	
-	async updateById(_id: string, data: IUser) {
+	async updateById(_id: string, data: IUserEditInput) {
 		return await axios.put<IUser>(getUsersUrl(`${_id}`), data)
 	},
 	

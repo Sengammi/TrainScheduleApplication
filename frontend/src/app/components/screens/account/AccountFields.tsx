@@ -59,3 +59,21 @@ export const ChangePasswordFields: FC<IAccountFields> = ({ register, formState: 
 		</>
 	)
 }
+
+export const ChangeRoleFields: FC<IAccountFields> = ({ register, formState: {errors}}) => {
+	return (
+		<>
+			<Field
+				{...register('isAdmin', {
+					required: false,
+					value: {
+						type: 'boolean',
+					}
+				})}
+				placeholder={'Admin role'}
+				type={'checkbox'}
+				error={errors.isAdmin}
+			/>
+		</>
+	)
+}
